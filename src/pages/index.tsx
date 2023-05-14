@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Router from 'next/router'
 import { Inter } from 'next/font/google'
 
 import logoComplete from '../../public/images/logo-complete.svg'
 import backgroundFerrari from '../../public/images/ferrari-background.png'
 import arrow from '../../public/images/arrow.svg'
 import startFullfilled from '../../public/images/star-fullfilled.svg'
+import SearchInput from '@/components/SearchInput'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,22 +33,30 @@ export default function Home() {
             src={backgroundFerrari}
             alt="Ferrari"
           />
-          <div className='absolute flex items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/6 h-1/6 max-h-12 bg-white rounded-md'>
-            <svg
-              className="w-6 h-6 mx-2.5"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="gray"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
+          {/* <div className='absolute flex items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/6 h-1/6 max-h-12 bg-white rounded-md'>
+            <div onClick={() => Router.push("/cars")}>
+              <svg
+                className="w-6 h-6 mx-2.5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="gray"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </div>
             <input
               placeholder='Pesquisar veículos em oferta'
               className='bg-white w-full h-full rounded-md text-gray-700 focus:outline-none'
               title='search'>
             </input>
+          </div> */}
+          <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/6 h-1/6'>
+            <SearchInput
+              onClick={() => Router.push("/cars")}
+              placeholder='Pesquisar veículos em oferta'
+            />
           </div>
         </div>
         <div className='grow'>
