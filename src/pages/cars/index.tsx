@@ -14,55 +14,57 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Cars() {
   return (
-    <div className='bg-white h-screen'>
-      <div className='p-4 flex items-end'>
-        <Image
-          className=''
-          src={logo}
-          alt=""
-          onClick={() => Router.push("/")}
-        />
-        <div className='border-[1px] border-gray-400 h-8 rounded-[3px] grow mx-3 mb-2'>
-          <SearchInput
-            onClick={() => {}}
-            value="Porshe taycan"
+    <div className='bg-white h-screen overflow-auto'>
+      <div className='mx-auto max-w-5xl'>
+        <div className='p-4 flex items-end'>
+          <Image
+            className='md:scale-125 md:mx-4 lg:mx-8'
+            src={logo}
+            alt=""
+            onClick={() => Router.push("/")}
+          />
+          <div className='border-[1px] border-gray-400 h-8 md:h-10 lg:h-12 rounded-[3px] grow mx-3 mb-2'>
+            <SearchInput
+              onClick={() => {}}
+              value="Porshe taycan"
+            />
+          </div>
+        </div>
+        <div>
+          <Card
+            image={taycan}
+            redirect='/detail'
+            title="Porshe Taycan"
+            description="Turbo S"
+            value="R$ 559.000,00"
+            year="2021/2022"
+            kilometers="11.950 km"
+            city="São Paulo - SP"
+            isFavorited={true}
+          />
+          <Card
+            image={ferrari}
+            redirect='/'
+            title="Ferrari F8"
+            description="Spider 3.9 V8 Turbo"
+            value="R$ 4.199.900,00"
+            year="2021/2022"
+            kilometers="770 km"
+            city="Florianópolis - SC"
+            isFavorited={false}
+          />
+          <Card
+            image={mclaren}
+            redirect='/'
+            title="McLaren P1"
+            description="3.8 V8 Híbrido"
+            value="R$ 5.559.000,00"
+            year="2021/2022"
+            kilometers="1.250 km"
+            city="São Paulo - SP"
+            isFavorited={false}
           />
         </div>
-      </div>
-      <div>
-        <Card
-          image={taycan}
-          redirect='/detail'
-          title="Porshe Taycan"
-          description="Turbo S"
-          value="R$ 559.000,00"
-          year="2021/2022"
-          kilometers="11.950 km"
-          city="São Paulo - SP"
-          isFavorited={true}
-        />
-        <Card
-          image={ferrari}
-          redirect='/'
-          title="Ferrari F8"
-          description="Spider 3.9 V8 Turbo"
-          value="R$ 4.199.900,00"
-          year="2021/2022"
-          kilometers="770 km"
-          city="Florianópolis - SC"
-          isFavorited={false}
-        />
-        <Card
-          image={mclaren}
-          redirect='/'
-          title="McLaren P1"
-          description="3.8 V8 Híbrido"
-          value="R$ 5.559.000,00"
-          year="2021/2022"
-          kilometers="1.250 km"
-          city="São Paulo - SP"
-          isFavorited={false}
-        />
       </div>
     </div>
   )

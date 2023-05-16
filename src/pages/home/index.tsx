@@ -14,12 +14,12 @@ export default function Home() {
         <div className='flex w-full items-center justify-center md:justify-between'>
           <div className='m-12'>
             <Image
-              className='w-full'
+              className='w-full md:scale-125'
               src={logoComplete}
               alt=""
             />
           </div>
-          <div className='text-red-900 font-semibold text-center m-12 hidden md:block'>
+          <div className='text-red-900 font-semibold text-center text-xl m-12 hidden md:block'>
             <Link href={"/announce"}>Anunciar um veículo</Link>
           </div>
         </div>
