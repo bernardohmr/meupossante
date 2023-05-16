@@ -12,7 +12,7 @@ import Card from '@/components/Card'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Cars() {
   return (
     <div className='bg-white h-screen'>
       <div className='p-4 flex items-end'>
@@ -32,12 +32,12 @@ export default function Home() {
       <div>
         <Card
           image={taycan}
-          redirect='/'
+          redirect='/details'
           title="Porshe Taycan"
           description="Turbo S"
           value="R$ 559.000,00"
           year="2021/2022"
-          kilometers={11950}
+          kilometers="11.950 km"
           city="São Paulo - SP"
           isFavorited={true}
         />
@@ -48,7 +48,7 @@ export default function Home() {
           description="Spider 3.9 V8 Turbo"
           value="R$ 4.199.900,00"
           year="2021/2022"
-          kilometers={770}
+          kilometers="770 km"
           city="Florianópolis - SC"
           isFavorited={false}
         />
@@ -59,7 +59,7 @@ export default function Home() {
           description="3.8 V8 Híbrido"
           value="R$ 5.559.000,00"
           year="2021/2022"
-          kilometers={1250}
+          kilometers="1.250 km"
           city="São Paulo - SP"
           isFavorited={false}
         />

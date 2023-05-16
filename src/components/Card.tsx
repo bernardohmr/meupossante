@@ -11,7 +11,7 @@ interface IRequest {
   description: string;
   value: string;
   year: string;
-  kilometers: number;
+  kilometers: string;
   city: string;
   isFavorited?: boolean;
 }
@@ -28,36 +28,40 @@ export default function Card({
   isFavorited,
 }: IRequest) {
   return (
-    <div className='mb-6 flex items-center shadow-[0_5px_5px_rgba(0,0,0,0.25)]' onClick={() => Router.push(redirect)}>
+    <div className='mb-6 flex shadow-[0_5px_5px_rgba(0,0,0,0.25)]' onClick={() => Router.push(redirect)}>
       <Image
         className='w-1/2'
         src={image}
         alt={title}
       />
-      <div className='w-1/2 min-h-[156px]'>
-        <div className=' text-neutral-950 grid grid-cols-10 grid-rows-3 h-full'>
-          <div className='col-span-7'>
-            <p className='text-sm font-semibold'>{title}</p>
-            <p className='text-xs font-sans'>{description}</p>
+      <div className='w-1/2'>
+        <div className='text-neutral-950 font-sans flex justify-between h-full p-3 pt-2'>
+          <div className='flex flex-col justify-between'>
+            <div className=''>
+              <p className='text-sm font-semibold'>{title}</p>
+              <p className='text-xs font-light'>{description}</p>
+            </div>
+            <div className=''>
+              <span className='text-sm italic'>{value}</span>
+            </div>
+            <div className=''>
+              <span className='text-xs font-light tracking-tighter'>{city}</span>
+            </div>
           </div>
-          <div className='col-span-3'>
-            <p className='text-xs'>{year}</p>
-            <p className='text-xs'>{kilometers} km</p>
-          </div>
-          <div className='col-span-8'>
-            <span className='text-sm'>{value}</span>
-          </div>
-          <div className='col-span-2'>
-            {isFavorited && <Image className='inline-block' src={startFullfilled} alt="" width={20} />}
-          </div>
-          <div className='col-span-7'>
-            <span className='text-sm'>{city}</span>
-          </div>
-          <div className='col-span-3'>
-            <Button
-              onClick={() => { }}
-              title='Contato'
-            />
+          <div className='flex flex-col justify-between'>
+            <div className=''>
+              <p className='text-xs font-light tracking-tighter float-right'>{year}</p>
+              <p className='text-xs font-light tracking-tighter ml-4'>{kilometers}</p>
+            </div>
+            <div className=''>
+              {isFavorited && <Image className='inline-block float-right' src={startFullfilled} alt="" width={20} />}
+            </div>
+            <div className=''>
+              <Button
+                onClick={() => { }}
+                title='Contato'
+              />
+            </div>
           </div>
         </div>
       </div>
