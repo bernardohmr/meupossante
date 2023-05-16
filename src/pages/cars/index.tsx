@@ -3,10 +3,10 @@ import Router from 'next/router'
 
 import { Inter } from 'next/font/google'
 
-import logo from '../../public/images/logo.svg'
-import taycan from '../../public/images/taycan.png'
-import ferrari from '../../public/images/ferrari.png'
-import mclaren from '../../public/images/mclaren.png'
+import logo from '@/../public/images/logo.svg'
+import taycan from '@/../public/images/taycan.png'
+import ferrari from '@/../public/images/ferrari.png'
+import mclaren from '@/../public/images/mclaren.png'
 import SearchInput from '@/components/SearchInput'
 import Card from '@/components/Card'
 
@@ -32,7 +32,7 @@ export default function Cars() {
       <div>
         <Card
           image={taycan}
-          redirect='/details'
+          redirect='/detail'
           title="Porshe Taycan"
           description="Turbo S"
           value="R$ 559.000,00"

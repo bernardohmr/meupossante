@@ -1,15 +1,18 @@
 interface IRequest {
-  onClick(): any,
   title: string;
+  onClick(): any;
+  className?: string;
 }
 
-export default function Button({ onClick, title }: IRequest) {
+export default function Button({ title, onClick, className }: IRequest) {
   return (
-    <button
-      className="rounded-[0.2rem] border-[1px] min-h-[1.3em] border-red-900 hover:bg-red-900 hover:text-white"
-      onClick={onClick}
-    >
-      <span className="block my-auto text-xs text-center text-red-900 m-2">{title}</span>
-    </button>
+    <div className="w-full h-full">
+      <button
+        className="w-full h-full rounded-[0.2rem] border-[1px] text-red-900 min-h-[1.3em] border-red-900 hover:bg-red-900 hover:text-white"
+        onClick={onClick}
+      >
+        <span className={"block my-auto text-xs text-center m-2 " + className}>{title}</span>
+      </button>
+    </div>
   )
 }

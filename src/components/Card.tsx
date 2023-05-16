@@ -58,8 +58,8 @@ export default function Card({
             </div>
             <div className=''>
               <Button
+                title="Contato"
                 onClick={() => { }}
-                title='Contato'
               />
             </div>
           </div>
