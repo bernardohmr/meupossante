@@ -19,14 +19,22 @@ export default function Details() {
   const [isFavorited, setIsFavorited] = useState(true);
 
   const carFeatures = [
-    { feature: "Porshe Taycan", description: "Modelo" },
-    { feature: "Turbo S", description: "Versão" },
-    { feature: "2021/2022", description: "Ano" },
-    { feature: "11.950", description: "Km" },
-    { feature: "761cv elétrico", description: "Motorização" },
-    { feature: "Branco", description: "Cor" },
-    { feature: "Sim", description: "Único dono?" },
+    { key: "title", feature: "Porshe Taycan", description: "Modelo" },
+    { key: "description", feature: "Turbo S", description: "Versão" },
+    { key: "value", feature: "R$ 559.000,00", description: "Valor" },
+    { key: "city", feature: "São Paulo - SP", description: "Cidade" },
+    { key: "year", feature: "2021/2022", description: "Ano" },
+    { key: "kilometers", feature: "11.950", description: "Km" },
+    { key: "motorization", feature: "761cv elétrico", description: "Motorização" },
+    { key: "color", feature: "Branco", description: "Cor" },
+    { key: "uniqueOwner", feature: "Sim", description: "Único dono?" },
   ];
+
+  function findFeatureName(key: string) {
+    const feature = carFeatures.find(f => f.key === key);
+
+    return feature?.feature || "N/D";
+  }
 
   const images = [
     taycanDetail,
@@ -64,8 +72,8 @@ export default function Details() {
               onClick={() => Router.push("/cars")}
             />
             <div className='text-neutral-950 font-sans inline-block ml-3'>
-              <p className='font-semibold xs:text-xl sm:text-3xl sm:mb-2 lg:text-4xl lg:font-normal sm:inline-block'>Porshe Taycan</p>
-              <p className='font-light sm:inline-block sm:text-xl sm:ml-2'>Turbo S</p>
+              <p className='font-semibold xs:text-xl sm:text-3xl sm:mb-2 lg:text-4xl lg:font-normal sm:inline-block'>{findFeatureName("title")}</p>
+              <p className='font-light sm:inline-block sm:text-xl sm:ml-2'>{findFeatureName("description")}</p>
             </div>
           </div>
           <Image
@@ -86,8 +94,8 @@ export default function Details() {
 
         <div className='pt-6 pl-8 flex items-center justify-between'>
           <div className='text-black inline-block grow'>
-            <p className='text-2xl italic sm:text-3xl lg:text-4xl'>R$ 559.000,00</p>
-            <p className='text-sm sm:text-lg lg:text-2xl tracking-tighter'>São Paulo - SP</p>
+            <p className='text-2xl italic sm:text-3xl lg:text-4xl'>{findFeatureName("value")}</p>
+            <p className='text-sm sm:text-lg lg:text-2xl tracking-tighter'>{findFeatureName("city")}</p>
           </div>
           <div className='m-3 h-8 inline-block w-1/3 max-w-[300px]'>
             <Button

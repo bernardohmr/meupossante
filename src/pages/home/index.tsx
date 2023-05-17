@@ -8,6 +8,13 @@ import SearchInput from '@/components/SearchInput'
 import LastSearchItem from './components/LastSearchItem'
 
 export default function Home() {
+  const lastSearchs = [
+    { searchText: "Porshe Taycan", isFavorited: true },
+    { searchText: "Lamborghini", isFavorited: false },
+    { searchText: "Ferrari", isFavorited: false },
+    { searchText: "Volvo", isFavorited: false },
+  ];
+
   return (
     <div className='bg-white'>
       <div className='bg-white flex flex-col max-w-5xl min-h-screen mx-auto'>
@@ -39,10 +46,7 @@ export default function Home() {
         <div className='grow'>
           <div className='text-gray-700 pt-8 pl-8 text-lg mb-4'>Últimas pesquisas</div>
           <div className='px-5 pb-5'>
-            <LastSearchItem searchText='Porshe Taycan' isFavorited/>
-            <LastSearchItem searchText='Lamborghini'/>
-            <LastSearchItem searchText='Ferrari'/>
-            <LastSearchItem searchText='Volvo'/>
+            {lastSearchs.map(({ searchText, isFavorited }) => <LastSearchItem searchText={searchText} isFavorited={isFavorited} />)}
           </div>
         </div>
         <div className='text-red-900 font-semibold text-center m-8 md:hidden'>

@@ -13,6 +13,42 @@ import Card from '@/components/Card'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Cars() {
+  const cars = [
+    {
+      image: taycan,
+      redirect: "/detail",
+      title: "Porshe Taycan",
+      description: "Turbo S",
+      value: "R$ 559.000,00",
+      year: "2021/2022",
+      kilometers: "11.950 km",
+      city: "São Paulo - SP",
+      isFavorited: true,
+    },
+    {
+      image: ferrari,
+      redirect: "/",
+      title: "Ferrari F8",
+      description: "Spider 3.9 V8 Turbo",
+      value: "R$ 4.199.900,00",
+      year: "2021/2022",
+      kilometers: "770 km",
+      city: "Florianópolis - SC",
+      isFavorited: false,
+    },
+    {
+      image: mclaren,
+      redirect: "/",
+      title: "McLaren P1",
+      description: "3.8 V8 Híbrido",
+      value: "R$ 5.559.000,00",
+      year: "2021/2022",
+      kilometers: "1.250 km",
+      city: "São Paulo - SP",
+      isFavorited: false,
+    },
+  ]
+
   return (
     <div className='bg-white h-screen overflow-auto'>
       <div className='mx-auto max-w-5xl'>
@@ -31,39 +67,17 @@ export default function Cars() {
           </div>
         </div>
         <div>
-          <Card
-            image={taycan}
-            redirect='/detail'
-            title="Porshe Taycan"
-            description="Turbo S"
-            value="R$ 559.000,00"
-            year="2021/2022"
-            kilometers="11.950 km"
-            city="São Paulo - SP"
-            isFavorited={true}
-          />
-          <Card
-            image={ferrari}
-            redirect='/'
-            title="Ferrari F8"
-            description="Spider 3.9 V8 Turbo"
-            value="R$ 4.199.900,00"
-            year="2021/2022"
-            kilometers="770 km"
-            city="Florianópolis - SC"
-            isFavorited={false}
-          />
-          <Card
-            image={mclaren}
-            redirect='/'
-            title="McLaren P1"
-            description="3.8 V8 Híbrido"
-            value="R$ 5.559.000,00"
-            year="2021/2022"
-            kilometers="1.250 km"
-            city="São Paulo - SP"
-            isFavorited={false}
-          />
+          {cars.map(car => (<Card
+            image={car.image}
+            redirect={car.redirect}
+            title={car.title}
+            description={car.description}
+            value={car.value}
+            year={car.year}
+            kilometers={car.kilometers}
+            city={car.city}
+            isFavorited={car.isFavorited}
+          />))}
         </div>
       </div>
     </div>

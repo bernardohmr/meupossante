@@ -1,11 +1,11 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import Router from 'next/router'
 
 import startFullfilled from '../../public/images/star-fullfilled.svg'
 import Button from '@/components/Button'
 
 interface IRequest {
-  image: any;
+  image: StaticImageData;
   redirect: string;
   title: string;
   description: string;
