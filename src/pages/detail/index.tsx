@@ -72,7 +72,7 @@ export default function Details() {
               onClick={() => Router.push("/cars")}
             />
             <div className='text-neutral-950 font-sans inline-block ml-3'>
-              <p className='font-semibold xs:text-xl sm:text-3xl sm:mb-2 lg:text-4xl lg:font-normal sm:inline-block'>{findFeatureName("title")}</p>
+              <p className='font-semibold xs:text-xl sm:text-3xl sm:mb-2 sm:font-normal sm:inline-block'>{findFeatureName("title")}</p>
               <p className='font-light sm:inline-block sm:text-xl sm:ml-2'>{findFeatureName("description")}</p>
             </div>
           </div>

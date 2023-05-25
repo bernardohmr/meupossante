@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
         <div className='text-red-900 font-semibold text-center m-8 md:hidden'>
-          <Link href={"/announce"}>Anunciar um veículo</Link>
+          <Link href={"/login"}>Anunciar um veículo</Link>
         </div>
       </div>
     </div>
