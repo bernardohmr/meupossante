@@ -57,7 +57,7 @@ export default function Cars() {
             className='md:scale-125 md:mx-4 lg:mx-8'
             src={logo}
             alt=""
-            onClick={() => Router.push("/")}
+            onClick={() => Router.back()}
           />
           <div className='border-[1px] border-gray-400 h-8 md:h-10 lg:h-12 rounded-[3px] grow mx-3 mb-2'>
             <SearchInput

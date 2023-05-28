@@ -9,6 +9,7 @@ import taycan3 from '../../../public/images/taycan3.webp'
 import taycan4 from '../../../public/images/taycan4.webp'
 import star from '@/../public/images/star.svg'
 import starFullfilled from '../../../public/images/star-fullfilled.svg'
+import starFullfilledWhite from '../../../public/images/star-fullfilled-white.svg'
 import Button from '@/components/Button'
 import Divider from '@/components/Divider'
 import CarFeaturesItem from './components/CarFeaturesItem'
@@ -17,6 +18,16 @@ import PhotoChooser from './components/PhotoChooser'
 
 export default function Details() {
   const [isFavorited, setIsFavorited] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
+  function handleFavoriteStarClicked() {
+    if (!isFavorited) {
+      setShowModal(true);
+      setTimeout(() => setShowModal(false), 2000);
+    }
+
+    setIsFavorited(!isFavorited);
+  }
 
   const carFeatures = [
     { key: "title", feature: "Porshe Taycan", description: "Modelo" },
@@ -43,23 +54,6 @@ export default function Details() {
     taycan3,
   ]
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentImage, setCurrentImage] = useState(images[currentImageIndex]);
-
-  function selectCurrentImage(direction: "asc" | "desc") {
-    const maxIndex = images.length - 1;
-
-    if (direction === "asc") {
-      if (currentImageIndex === maxIndex) setCurrentImageIndex(0);
-      else setCurrentImageIndex(currentImageIndex + 1);
-    } else {
-      if (currentImageIndex === 0) setCurrentImageIndex(maxIndex);
-      else setCurrentImageIndex(currentImageIndex - 1);
-    }
-
-    setCurrentImage(images[currentImageIndex]);
-  }
-
   return (
     <div className='bg-white h-screen overflow-auto'>
       <div className='mx-auto max-w-5xl'>
@@ -69,7 +63,7 @@ export default function Details() {
               className='inline-block'
               src={logo}
               alt=""
-              onClick={() => Router.push("/cars")}
+              onClick={() => Router.back()}
             />
             <div className='text-neutral-950 font-sans inline-block ml-3'>
               <p className='font-semibold xs:text-xl sm:text-3xl sm:mb-2 sm:font-normal sm:inline-block'>{findFeatureName("title")}</p>
@@ -80,16 +74,26 @@ export default function Details() {
             className='inline-block sm:scale-150'
             src={isFavorited ? starFullfilled : star}
             alt=""
-            onClick={() => setIsFavorited(!isFavorited)}
+            onClick={handleFavoriteStarClicked}
           />
         </div>
 
-        <div className='w-full'>
+        <div className='w-full relative'>
           <PhotoChooser
-            currentImage={currentImage}
-            onClickNext={() => selectCurrentImage("asc")}
-            onClickPrev={() => selectCurrentImage("desc")}
+            images={images}
           />
+
+          <div
+            className={'w-full h-full bg-red-900/30 absolute top-0 flex flex-col items-center justify-center transition-opacity ease-out duration-700' + (showModal ? "" : " opacity-0")}
+            onClick={() => setShowModal(false)}
+          >
+            <Image
+              className='inline-block sm:scale-150 h-12'
+              src={starFullfilledWhite}
+              alt="Adicionado como favorito!"
+            />
+            <p className='text-2xl font-semibold'>Adicionado como favorito!</p>
+          </div>
         </div>
 
         <div className='pt-6 pl-8 flex items-center justify-between'>
