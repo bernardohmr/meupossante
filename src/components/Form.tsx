@@ -27,6 +27,12 @@ export default function Form({
 }: IRequest) {
   const values: any = {};
 
+  function handleFormSubmit(event) {
+    event.preventDefault();
+
+    handleSubmit()
+  }
+
   function handleSubmit() {
     const valuesParsed: Array<IInput> = [];
 
@@ -44,7 +50,10 @@ export default function Form({
 
   return (
     <div className="h-full bg-white w-full">
-      <div className='h-full max-w-5xl mx-auto'>
+      <form
+        className='h-full max-w-5xl mx-auto'
+        onSubmit={handleFormSubmit}
+      >
         <div className='[&>*]:mb-6 [&>*:nth-child(7)]:mb-0'>
           {fields.map(field => <InputText
             key={field.key}
@@ -63,7 +72,7 @@ export default function Form({
           </div>
         </div>
 
-      </div>
+      </form>
     </div>
   )
 }

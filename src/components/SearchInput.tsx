@@ -1,10 +1,12 @@
 interface IRequest {
   onClick(): any,
+  onChange: (event) => any | void;
+  onSubmit?: () => any,
   placeholder?: string;
-  value?: string;
+  defaultValue?: string;
 }
 
-export default function SearchInput({ onClick, placeholder, value, ...rest }: IRequest) {
+export default function SearchInput({ onClick, onChange, placeholder, defaultValue, onSubmit, ...rest }: IRequest) {
   return (
     <div className='flex items-center bg-white rounded-md h-full'>
       <div onClick={onClick}>
@@ -23,7 +25,9 @@ export default function SearchInput({ onClick, placeholder, value, ...rest }: IR
         placeholder={placeholder}
         className='bg-white w-full h-full rounded-md text-gray-700 focus:outline-none'
         title='search'
-        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        onKeyDown={(event) => { if(event.key === "Enter" && onSubmit) onSubmit() }}
       >
       </input>
     </div>

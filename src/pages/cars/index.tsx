@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Router from 'next/router'
+import { useSearchParams } from 'next/navigation';
 
 import { Inter } from 'next/font/google'
 
@@ -13,6 +14,9 @@ import Card from '@/components/Card'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Cars() {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+
   const cars = [
     {
       image: taycan,
@@ -62,7 +66,8 @@ export default function Cars() {
           <div className='border-[1px] border-gray-400 h-8 md:h-10 lg:h-12 rounded-[3px] grow mx-3 mb-2'>
             <SearchInput
               onClick={() => {}}
-              value="Porshe taycan"
+              onChange={() => {}}
+              defaultValue={search || ""}
             />
           </div>
         </div>
