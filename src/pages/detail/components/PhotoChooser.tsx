@@ -10,7 +10,6 @@ interface IRequest {
 }
 
 export default function PhotoChooser({ images }: IRequest) {
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState(images[currentImageIndex]);
 
@@ -38,13 +37,13 @@ export default function PhotoChooser({ images }: IRequest) {
         />
       </div>
       <Image
-        className='absolute top-1/2 -translate-y-1/2 scale-150 left-3'
+        className='absolute top-1/2 -translate-y-1/2 scale-150 left-3 z-50'
         alt=""
         src={arrowLeft}
         onClick={() => selectCurrentImage("desc")}
       />
       <Image
-        className='absolute top-1/2 -translate-y-1/2 scale-150 right-3'
+        className='absolute top-1/2 -translate-y-1/2 scale-150 right-3 z-50'
         alt=""
         src={arrowRight}
         onClick={() => selectCurrentImage("asc")}
