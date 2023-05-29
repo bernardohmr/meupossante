@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  email          String         @unique
+  name           String?
+  hashedPassword String
+  announcements  Announcement[]
+}
+
+model Announcement {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  title        String
+  description  String
+  value        Int
+  city         String
+  year         String
+  kilometers   Int
+  motorization String
+  color        String
+  uniqueOwner  String
+  creator         User     @relation(fields: [creatorId], references: [id])
+  creatorId       String   @db.ObjectId
+}
