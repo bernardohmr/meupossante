@@ -7,3 +7,22 @@ export async function listAnnouncements(filter?: string) {
 
     return announcements;
 }
+
+export async function listUsers(filter?: string) {
+    const users = await prisma.user.findMany()
+
+    return users;
+}
+
+export async function insertAnnouncement(data) {
+    const announcement = await prisma.announcement.create({
+        data: {
+            ...data,
+            creatorId: "6473f4d5762442cc8ee7bce7",
+            main_image: "taycan.png",
+            images: ["taycan.png"]
+        }
+    });
+
+    return announcement;
+}

@@ -1,22 +1,18 @@
-import InputText from '@/components/InputText'
+import Input, { IField } from '@/components/Input'
 import Button from '@/components/Button'
-
-interface IInput{
-  key: string;
-  value: string;
-}
-
-interface IField {
-  placeholder: string;
-  key: string;
-  required?: boolean;
-}
+import Loader from './Loader';
+import { useRef } from 'react';
 
 interface IRequest {
   submitButtonTitle: string;
-  onSubmit(data: Array<IInput>): any;
+  onSubmit(data: any): any;
   fields: Array<IField>;
   submitButtonIcon?: any;
+  isLoading?: boolean;
+  isLoadedWithSuccess?: boolean;
+  isLoadedWithError?: boolean;
+  submitSuccessMessage?: string;
+  submitErrorMessage?: string;
 }
 
 export default function Form({
@@ -24,28 +20,31 @@ export default function Form({
   onSubmit,
   fields,
   submitButtonIcon,
+  isLoading,
+  isLoadedWithSuccess,
+  isLoadedWithError,
+  submitSuccessMessage,
+  submitErrorMessage,
 }: IRequest) {
-  const values: any = {};
+  const refsMap: { [key: string]: any } = {};
+
+  fields
+    .forEach(field => refsMap[field.key] = useRef());
 
   function handleFormSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
+    const form = event.target;
 
-    handleSubmit()
+    handleSubmit();
+    form.reset();
   }
 
   function handleSubmit() {
-    const valuesParsed: Array<IInput> = [];
+    const valuesParsed: { [key: string]: any } = {};
 
-    fields.forEach(field => valuesParsed.push({
-      key: field.key,
-      value: values[field.key] || "",
-    }))
+    fields.forEach(field => valuesParsed[field.key] = refsMap[field.key]?.current?.value || "")
 
     onSubmit(valuesParsed)
-  }
-
-  function handleFieldChange(event: any, key: string) {
-    values[key] = event.target.value;
   }
 
   return (
@@ -54,24 +53,29 @@ export default function Form({
         className='h-full max-w-5xl mx-auto'
         onSubmit={handleFormSubmit}
       >
-        <div className='[&>*]:mb-6 [&>*:nth-child(7)]:mb-0'>
-          {fields.map(field => <InputText
+        <div className='[&>*]:mb-6'>
+          {fields.map(field => <Input
             key={field.key}
             placeholder={field.placeholder}
-            onChange={(event) => handleFieldChange(event, field.key)}
+            reference={refsMap[field.key]}
+            type={field.type || "text"}
+            options={field.options}
           />)}
         </div>
 
         <div className='mx-auto w-1/2 h-10 max-w-xs flex mt-6'>
-          <div className='ml-4 grow'>
+          {!isLoading && <div className='ml-4 grow'>
             <Button
               title={submitButtonTitle}
               onClick={handleSubmit}
               icon={submitButtonIcon}
             />
-          </div>
+          </div>}
+          {isLoading && <Loader />}
         </div>
 
+        {isLoadedWithSuccess && !isLoading && <div className='mx-auto my-6 text-black text-center'>{submitSuccessMessage || "Enviado!"}</div>}
+        {isLoadedWithError && !isLoading && <div className='mx-auto my-6 text-black text-center'>{submitErrorMessage || "Ops, algo deu errado!"}</div>}
       </form>
     </div>
   )

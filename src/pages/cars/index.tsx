@@ -2,56 +2,15 @@ import Image from 'next/image'
 import Router from 'next/router'
 import { useSearchParams } from 'next/navigation';
 
-import { Inter } from 'next/font/google'
-
 import logo from '@/../public/images/logo.svg'
-import taycan from '@/../public/images/taycan.png'
-import ferrari from '@/../public/images/ferrari.png'
-import mclaren from '@/../public/images/mclaren.png'
 import SearchInput from '@/components/SearchInput'
 import Card from '@/components/Card'
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Cars() {
+export default function Cars({ cars }: InferGetStaticPropsType<typeof getStaticProps>) {
   const searchParams = useSearchParams();
   const search = searchParams.get('search');
-
-  const cars = [
-    {
-      image: taycan,
-      redirect: "/detail",
-      title: "Porshe Taycan",
-      description: "Turbo S",
-      value: "R$ 559.000,00",
-      year: "2021/2022",
-      kilometers: "11.950 km",
-      city: "São Paulo - SP",
-      isFavorited: true,
-    },
-    {
-      image: ferrari,
-      redirect: "/",
-      title: "Ferrari F8",
-      description: "Spider 3.9 V8 Turbo",
-      value: "R$ 4.199.900,00",
-      year: "2021/2022",
-      kilometers: "770 km",
-      city: "Florianópolis - SC",
-      isFavorited: false,
-    },
-    {
-      image: mclaren,
-      redirect: "/",
-      title: "McLaren P1",
-      description: "3.8 V8 Híbrido",
-      value: "R$ 5.559.000,00",
-      year: "2021/2022",
-      kilometers: "1.250 km",
-      city: "São Paulo - SP",
-      isFavorited: false,
-    },
-  ]
 
   return (
     <div className='bg-white h-screen overflow-auto'>
@@ -73,10 +32,10 @@ export default function Cars() {
         </div>
         <div>
           {cars.map(car => (<Card
-            image={car.image}
+            image={car.main_image}
             redirect={car.redirect}
-            title={car.title}
-            description={car.description}
+            model={car.model}
+            version={car.version}
             value={car.value}
             year={car.year}
             kilometers={car.kilometers}
@@ -88,3 +47,21 @@ export default function Cars() {
     </div>
   )
 }
+
+interface ICar {
+  main_image: string;
+  redirect: string;
+  model: string;
+  version: string;
+  value: number;
+  year: string;
+  kilometers: number;
+  city: string;
+  isFavorited?: boolean;
+}
+
+export const getStaticProps: GetStaticProps<{ cars: ICar[] }> = async () => {
+  const res = await fetch('http://localhost:3000/api/announcements');
+  const cars = await res.json();
+  return { props: { cars } };
+};

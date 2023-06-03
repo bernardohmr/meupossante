@@ -2,11 +2,11 @@ import Image from 'next/image'
 import Router from 'next/router'
 
 import logo from '@/../public/images/logo.svg'
-import taycanDetail from '@/../public/images/taycan-detail-1.png'
-import taycan1 from '../../../public/images/taycan1.webp'
-import taycan2 from '../../../public/images/taycan2.jpeg'
-import taycan3 from '../../../public/images/taycan3.webp'
-import taycan4 from '../../../public/images/taycan4.webp'
+import taycan from '@/../public/images/uploads/taycan.png'
+import taycan1 from '../../../public/images/uploads/taycan1.webp'
+import taycan2 from '../../../public/images/uploads/taycan2.jpeg'
+import taycan3 from '../../../public/images/uploads/taycan3.webp'
+import taycan4 from '../../../public/images/uploads/taycan4.webp'
 import star from '@/../public/images/star.svg'
 import starFullfilled from '../../../public/images/star-fullfilled.svg'
 import starFullfilledWhite from '../../../public/images/star-fullfilled-white.svg'
@@ -48,7 +48,7 @@ export default function Details() {
   }
 
   const images = [
-    taycanDetail,
+    taycan,
     taycan1,
     taycan2,
     taycan3,

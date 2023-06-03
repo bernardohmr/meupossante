@@ -16,15 +16,17 @@ export default function PhotoChooser({ images }: IRequest) {
   function selectCurrentImage(direction: "asc" | "desc") {
     const maxIndex = images.length - 1;
 
+    let changeTo = 0;
     if (direction === "asc") {
-      if (currentImageIndex === maxIndex) setCurrentImageIndex(0);
-      else setCurrentImageIndex(currentImageIndex + 1);
+      if (currentImageIndex === maxIndex) changeTo = 0;
+      else changeTo = currentImageIndex + 1;
     } else {
-      if (currentImageIndex === 0) setCurrentImageIndex(maxIndex);
-      else setCurrentImageIndex(currentImageIndex - 1);
+      if (currentImageIndex === 0) changeTo = maxIndex;
+      else changeTo = currentImageIndex - 1;
     }
 
-    setCurrentImage(images[currentImageIndex]);
+    setCurrentImageIndex(changeTo);
+    setCurrentImage(images[changeTo]);
   }
 
   return (

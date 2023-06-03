@@ -24,15 +24,17 @@ model Announcement {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  title        String
-  description  String
+  model        String
+  version  String
   value        Int
   city         String
   year         String
   kilometers   Int
   motorization String
   color        String
-  uniqueOwner  String
+  uniqueOwner  Boolean
   creator         User     @relation(fields: [creatorId], references: [id])
   creatorId       String   @db.ObjectId
+  main_image    String?
+  images        String[]
 }

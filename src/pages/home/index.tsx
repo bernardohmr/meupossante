@@ -35,7 +35,7 @@ export default function Home() {
             />
           </div>
           <div className='text-red-900 font-semibold text-center text-xl m-12 hidden md:block'>
-            <Link href={"/announce"}>Anunciar um veículo</Link>
+            <Link href={"/login"}>Anunciar um veículo</Link>
           </div>
         </div>
         <div className='relative w-full'>
