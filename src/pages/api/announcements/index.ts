@@ -31,26 +31,17 @@ export default async function handler(
     data["kilometers"] = parseInt(data["kilometers"]);
     data["uniqueOwner"] = data["uniqueOwner"] === "true" ? true : false;
 
-    console.log("picked " + JSON.stringify(data))
-
     let missingKey = "";
     requiredKeys.forEach(key => {
       if (data[key] === "" || data[key] === undefined) missingKey = key;
     });
 
-    console.log({ missingKey })
-
     if (missingKey) return res.status(400).json({ error: `Missing required param: ${missingKey}` });
 
     try {
-      console.log("chamando repositorio create announcement")
       const announcement = await repository.insertAnnouncement(data);
-
-
-
       return res.status(202).json(announcement)
     } catch (err) {
-      console.log("ERRRROOOOOO BANCO" + err);
       throw err
     }
 

@@ -26,3 +26,9 @@ export async function insertAnnouncement(data) {
 
     return announcement;
 }
+
+export async function getAnnouncement(id: string) {
+    const announcement = await prisma.announcement.findUnique({ where: { id } });
+
+    return announcement;
+}

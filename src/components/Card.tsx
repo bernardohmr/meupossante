@@ -14,7 +14,7 @@ interface IRequest {
   year: string;
   kilometers: number;
   city: string;
-  isFavorited?: boolean;
+  isFavorite?: boolean;
 }
 
 export default function Card({
@@ -26,10 +26,10 @@ export default function Card({
   year,
   kilometers,
   city,
-  isFavorited,
+  isFavorite,
 }: IRequest) {
   return (
-    <div className='mb-6 lg:mb-12 flex shadow-[0_5px_5px_rgba(0,0,0,0.25)]' onClick={() => Router.push(redirect)}>
+    <div className='mb-6 lg:mb-12 flex shadow-[0_5px_5px_rgba(0,0,0,0.25)]' onClick={() => Router.push(`/detail/${redirect}`)}>
       <Image
         className='w-1/2'
         src={`/../public/images/uploads/${image}`}
@@ -57,7 +57,7 @@ export default function Card({
               <p className='text-xs sm:text-lg lg:text-xl font-light tracking-tighter ml-4 clear-right float-right'>{`${formatToCurrency(kilometers, 0)} km`}</p>
             </div>
             <div className=''>
-              {isFavorited && <Image className='inline-block float-right sm:scale-150' src={startFullfilled} alt="" width={20} />}
+              {isFavorite && <Image className='inline-block float-right sm:scale-150' src={startFullfilled} alt="" width={20} />}
             </div>
             <div className=''>
               <Button

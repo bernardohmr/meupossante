@@ -7,6 +7,7 @@ import SearchInput from '@/components/SearchInput'
 import Card from '@/components/Card'
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
+import * as repository from '@/../prisma/repository'
 
 export default function Cars({ cars }: InferGetStaticPropsType<typeof getStaticProps>) {
   const searchParams = useSearchParams();
@@ -33,14 +34,14 @@ export default function Cars({ cars }: InferGetStaticPropsType<typeof getStaticP
         <div>
           {cars.map(car => (<Card
             image={car.main_image}
-            redirect={car.redirect}
+            redirect={car.id}
             model={car.model}
             version={car.version}
             value={car.value}
             year={car.year}
             kilometers={car.kilometers}
             city={car.city}
-            isFavorited={car.isFavorited}
+            isFavorite={car.isFavorite}
           />))}
         </div>
       </div>
@@ -49,19 +50,19 @@ export default function Cars({ cars }: InferGetStaticPropsType<typeof getStaticP
 }
 
 interface ICar {
+  id: string;
   main_image: string;
-  redirect: string;
   model: string;
   version: string;
   value: number;
   year: string;
   kilometers: number;
   city: string;
-  isFavorited?: boolean;
+  isFavorite?: boolean;
 }
 
 export const getStaticProps: GetStaticProps<{ cars: ICar[] }> = async () => {
-  const res = await fetch('http://localhost:3000/api/announcements');
-  const cars = await res.json();
-  return { props: { cars } };
+  const cars = await repository.listAnnouncements() as ICar[];
+  const parsedCars = JSON.parse(JSON.stringify(cars));
+  return { props: { cars: parsedCars } };
 };

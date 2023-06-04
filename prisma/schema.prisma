@@ -37,4 +37,5 @@ model Announcement {
   creatorId       String   @db.ObjectId
   main_image    String?
   images        String[]
+  isFavorite    Boolean?
 }

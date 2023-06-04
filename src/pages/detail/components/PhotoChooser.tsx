@@ -6,7 +6,7 @@ import arrowLeft from '@/../public/images/arrow-left.svg'
 import { useState } from 'react'
 
 interface IRequest {
-  images: Array<any>;
+  images: Array<string>;
 }
 
 export default function PhotoChooser({ images }: IRequest) {
@@ -35,7 +35,9 @@ export default function PhotoChooser({ images }: IRequest) {
         <Image
           className='max-h-[488px] mx-auto object-cover sm:object-scale-down'
           alt="Taycan"
-          src={currentImage}
+          src={`/../public/images/uploads/${currentImage}`}
+          width={800}
+          height={624}
         />
       </div>
       <Image
