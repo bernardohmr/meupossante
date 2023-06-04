@@ -19,7 +19,7 @@ export default function Login() {
             className=''
             src={logoComplete}
             alt=""
-            onClick={() => Router.back()}
+            onClick={() => Router.push("/")}
           />
         </div>
 

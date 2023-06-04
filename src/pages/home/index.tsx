@@ -56,7 +56,7 @@ export default function Home() {
         <div className='grow'>
           <div className='text-gray-700 pt-8 pl-8 text-lg mb-4'>Últimas pesquisas</div>
           <div className='px-5 pb-5'>
-            {lastSearchs.map(({ searchText, isFavorited }) => <LastSearchItem searchText={searchText} isFavorited={isFavorited} />)}
+            {lastSearchs.map(({ searchText, isFavorited }, index) => <LastSearchItem searchText={searchText} isFavorited={isFavorited} key={index} />)}
           </div>
         </div>
         <div className='text-red-900 font-semibold text-center m-8 md:hidden'>
