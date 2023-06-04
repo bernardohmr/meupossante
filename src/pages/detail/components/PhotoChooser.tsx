@@ -35,7 +35,7 @@ export default function PhotoChooser({ images }: IRequest) {
         <Image
           className='max-h-[488px] mx-auto object-cover sm:object-scale-down'
           alt="Taycan"
-          src={`/../public/images/uploads/${currentImage}`}
+          src={`/../public/images/${currentImage}`}
           width={800}
           height={624}
         />

@@ -2,6 +2,7 @@ import Input, { IField } from '@/components/Input'
 import Button from '@/components/Button'
 import Loader from './Loader';
 import { FormEventHandler, useRef } from 'react';
+import { useRouter } from 'next/navigation'
 
 interface IRequest {
   submitButtonTitle: string;
@@ -13,6 +14,7 @@ interface IRequest {
   isLoadedWithError?: boolean;
   submitSuccessMessage?: string;
   submitErrorMessage?: string;
+  buttonPath?: string;
 }
 
 export default function Form({
@@ -25,10 +27,13 @@ export default function Form({
   isLoadedWithError,
   submitSuccessMessage,
   submitErrorMessage,
+  buttonPath,
 }: IRequest) {
+  const router = useRouter();
   const itemsRef = useRef(new Map());
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+
     event.preventDefault();
     const form = event.target;
 
@@ -36,11 +41,28 @@ export default function Form({
     // form.reset();
   }
 
-  function handleSubmit() {
+  function getFormValues() {
     const valuesParsed: { [key: string]: any } = {};
 
-    // fields.forEach(field => valuesParsed[field.key] = refsMap[field.key]?.current?.value || "")
     fields.forEach(field => valuesParsed[field.key] = itemsRef.current.get(field.key)?.value || "")
+
+    return valuesParsed;
+  }
+
+  function getQueryString() {
+    const formValues = getFormValues();
+
+    return Object.keys(formValues)
+      .map(key => `${key}=${formValues[key]}`)
+      .join("&");
+  }
+
+  function handleSubmit() {
+    const valuesParsed = getFormValues();
+
+    if (buttonPath) {
+      router.push(`${buttonPath}?${getQueryString()}`)
+    }
 
     onSubmit(valuesParsed)
   }
