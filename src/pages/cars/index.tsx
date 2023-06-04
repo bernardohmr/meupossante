@@ -33,6 +33,7 @@ export default function Cars({ cars }: InferGetStaticPropsType<typeof getStaticP
         </div>
         <div>
           {cars.map(car => (<Card
+            key={car.id}
             image={car.main_image}
             redirect={car.id}
             model={car.model}

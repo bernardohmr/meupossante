@@ -1,3 +1,5 @@
+import { LegacyRef } from "react";
+
 export interface IField {
   placeholder: string;
   key: string;
@@ -10,7 +12,7 @@ export interface IField {
 }
 
 interface IRequest extends IField {
-  reference: any;
+  reference: LegacyRef<HTMLSelectElement | HTMLInputElement>
 }
 
 export default function Input({ placeholder, reference, type, options }: IRequest) {
@@ -21,7 +23,7 @@ export default function Input({ placeholder, reference, type, options }: IReques
      {type === "select" && options?.length
       ? <select
           className={className}
-          ref={reference}
+          ref={reference as LegacyRef<HTMLSelectElement>}
       >
         {options.map(opt => <option value={opt.value} key={opt.name}>{opt.name}</option>)}
       </select>
@@ -29,7 +31,7 @@ export default function Input({ placeholder, reference, type, options }: IReques
         className={className}
         type={type || "text"}
         placeholder={placeholder}
-        ref={reference}
+        ref={reference as LegacyRef<HTMLInputElement>}
       />}
     </div>
   )

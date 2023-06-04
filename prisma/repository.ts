@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { Announcement, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -14,7 +14,7 @@ export async function listUsers(filter?: string) {
     return users;
 }
 
-export async function insertAnnouncement(data) {
+export async function insertAnnouncement(data: Announcement) {
     const announcement = await prisma.announcement.create({
         data: {
             ...data,

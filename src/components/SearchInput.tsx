@@ -1,6 +1,8 @@
+import { ChangeEventHandler } from "react";
+
 interface IRequest {
   onClick(): any,
-  onChange: (event) => any | void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   onSubmit?: () => any,
   placeholder?: string;
   defaultValue?: string;

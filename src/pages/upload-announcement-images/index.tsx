@@ -34,8 +34,8 @@ export default function UploadAnnouncementImages() {
                 alt="Adicionar foto"
               />
             </div>
-            {imagesUploaded.map(image => (
-              <div className='w-[95px] h-[95px] rounded-lg m-3 sm:w-[150px] sm:h-[150px]'>
+            {imagesUploaded.map((image, index) => (
+              <div className='w-[95px] h-[95px] rounded-lg m-3 sm:w-[150px] sm:h-[150px]' key={index}>
                 <Image
                   className='rounded-lg m-auto h-full object-cover'
                   src={image}

@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import { MouseEventHandler } from 'react';
 
 interface IRequest {
   title: string;
-  onClick(): any;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   icon?: any;
 }

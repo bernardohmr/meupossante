@@ -12,7 +12,9 @@ export default async function handler(
 
     return res.status(200).json(announcements)
   } else if (req.method === "POST") {
-    console.log("*** RECEIVED API POST ***" + JSON.stringify(req.body))
+    console.log("*** RECEIVED API POST ***" + req.body)
+
+    return;
 
     const requiredKeys = [
       "model",
@@ -51,8 +53,6 @@ export default async function handler(
 }
 
 function pickObjectKeys<T extends object>(raw: T, keys: string | string[]): T {
-  console.log(JSON.stringify({ raw, keys }))
-
   const keysToFilter = typeof keys === "string"
     ? [keys]
     : keys;
@@ -60,7 +60,7 @@ function pickObjectKeys<T extends object>(raw: T, keys: string | string[]): T {
   return Object.keys(raw)
     .filter(key => keysToFilter.includes(key))
     .reduce((obj, key) => {
-      obj[key] = raw[key];
+      obj[key] = (raw as any)[key];
       return obj;
-    }, {}) as T;
+    }, {} as any) as T;
 }

@@ -11,7 +11,7 @@ interface IRequest {
 
 export default function PhotoChooser({ images }: IRequest) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentImage, setCurrentImage] = useState(images[currentImageIndex]);
+  const [currentImage, setCurrentImage] = useState(images?.length ? images[currentImageIndex] : "");
 
   function selectCurrentImage(direction: "asc" | "desc") {
     const maxIndex = images.length - 1;

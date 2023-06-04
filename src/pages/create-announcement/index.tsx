@@ -21,7 +21,7 @@ export default function CreateAnnouncement() {
     { key: "city", placeholder: "Cidade" },
   ];
 
-  function handleSubmit(data) {
+  function handleSubmit(data: any): void {
     setIsLoading(true)
 
     createAnnouncement(data)

@@ -5,13 +5,9 @@ interface ICreateAnnouncementData {
 }
 
 export const createAnnouncement = async (data: ICreateAnnouncementData) => {
-    console.log('CreateAnnouncement: ' + JSON.stringify(data))
-
+    console.log(data)
     await sleep(1000);
 
-    // return { ok: true }
-
-    // const url = `${process.env.API_BASE_URL}/api/announcements`
     const url = "http://localhost:3000/api/announcements"
 
     return fetch(url, {

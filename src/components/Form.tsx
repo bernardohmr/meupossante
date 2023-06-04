@@ -1,11 +1,11 @@
 import Input, { IField } from '@/components/Input'
 import Button from '@/components/Button'
 import Loader from './Loader';
-import { useRef } from 'react';
+import { FormEventHandler, useRef } from 'react';
 
 interface IRequest {
   submitButtonTitle: string;
-  onSubmit(data: any): any;
+  onSubmit(data: any): void;
   fields: Array<IField>;
   submitButtonIcon?: any;
   isLoading?: boolean;
@@ -26,23 +26,21 @@ export default function Form({
   submitSuccessMessage,
   submitErrorMessage,
 }: IRequest) {
-  const refsMap: { [key: string]: any } = {};
+  const itemsRef = useRef(new Map());
 
-  fields
-    .forEach(field => refsMap[field.key] = useRef());
-
-  function handleFormSubmit(event) {
-    // event.preventDefault();
+  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
     const form = event.target;
 
     handleSubmit();
-    form.reset();
+    // form.reset();
   }
 
   function handleSubmit() {
     const valuesParsed: { [key: string]: any } = {};
 
-    fields.forEach(field => valuesParsed[field.key] = refsMap[field.key]?.current?.value || "")
+    // fields.forEach(field => valuesParsed[field.key] = refsMap[field.key]?.current?.value || "")
+    fields.forEach(field => valuesParsed[field.key] = itemsRef.current.get(field.key)?.value || "")
 
     onSubmit(valuesParsed)
   }
@@ -57,7 +55,15 @@ export default function Form({
           {fields.map(field => <Input
             key={field.key}
             placeholder={field.placeholder}
-            reference={refsMap[field.key]}
+            // reference={refsMap[field.key]}
+            reference={(node) => {
+              const map = itemsRef.current;
+              if (node) {
+                map.set(field.key, node);
+              } else {
+                map.delete(field.key);
+              }
+            }}
             type={field.type || "text"}
             options={field.options}
           />)}
