@@ -12,7 +12,7 @@ export default async function handler(
 
     return res.status(200).json(announcements)
   } else if (req.method === "POST") {
-    console.log("*** RECEIVED API POST *** \n" + req.body)
+    console.log("*** RECEIVED API POST *** \n" + req.body);
 
     // return res.send('ok');
 

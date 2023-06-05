@@ -36,6 +36,7 @@ export default function Card({
         alt={model}
         width={800}
         height={624}
+        priority
       />
       <div className='w-1/2'>
         <div className='text-neutral-950 font-sans flex justify-between h-full p-3 pt-2 sm:p-6 lg:p-10'>
