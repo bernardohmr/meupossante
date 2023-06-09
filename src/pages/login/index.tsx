@@ -38,7 +38,7 @@ export default function Login() {
 
   return (
     <div className='bg-white h-screen'>
-      <div className='h-full flex flex-col justify-between'>
+      <div className='h-[90%] flex flex-col justify-between'>
         <div className='mx-auto pt-14'>
           <Image
             className=''
