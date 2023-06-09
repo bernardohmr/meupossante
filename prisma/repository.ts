@@ -18,7 +18,7 @@ export async function insertAnnouncement(data: Announcement) {
     const announcement = await prisma.announcement.create({
         data: {
             ...data,
-            creatorId: "6473f4d5762442cc8ee7bce7",
+            creatorId: "6483510759613b5bc6b8a59b",
             main_image: "taycan.png",
             images: ["taycan.png"]
         }
