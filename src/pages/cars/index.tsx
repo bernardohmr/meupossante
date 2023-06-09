@@ -65,5 +65,5 @@ interface ICar {
 export const getStaticProps: GetStaticProps<{ cars: ICar[] }> = async () => {
   const cars = await repository.listAnnouncements() as ICar[];
   const parsedCars = JSON.parse(JSON.stringify(cars));
-  return { props: { cars: parsedCars } };
+  return { props: { cars: parsedCars }, revalidate: 10 };
 };
