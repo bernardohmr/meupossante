@@ -14,9 +14,12 @@ model User {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
+  cpf             String        @unique
   email          String         @unique
-  name           String?
+  name           String
+  phone           String
   hashedPassword String
+  currentToken    String        @unique
   announcements  Announcement[]
 }
 

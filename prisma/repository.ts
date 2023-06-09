@@ -1,4 +1,4 @@
-import { Announcement, PrismaClient } from '@prisma/client'
+import { Announcement, PrismaClient, User } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -27,8 +27,32 @@ export async function insertAnnouncement(data: Announcement) {
     return announcement;
 }
 
+export async function insertUser(data: User) {
+    const user = await prisma.user.create({ data });
+
+    return user;
+}
+
 export async function getAnnouncement(id: string) {
     const announcement = await prisma.announcement.findUnique({ where: { id } });
 
     return announcement;
+}
+
+export async function getUser(id: string) {
+    const user = await prisma.user.findUnique({ where: { id } });
+
+    return user;
+}
+
+export async function getUserByEmail(email: string) {
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    return user;
+}
+
+export async function getUserByToken(token: string) {
+    const user = await prisma.user.findUnique({ where: { currentToken: token } });
+
+    return user;
 }

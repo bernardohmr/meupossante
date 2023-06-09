@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import * as repository from '@/../prisma/repository'
+import { pickObjectKeys } from '@/utils/pickObjectKeys';
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,8 +14,6 @@ export default async function handler(
     return res.status(200).json(announcements)
   } else if (req.method === "POST") {
     console.log("*** RECEIVED API POST *** \n" + req.body);
-
-    // return res.send('ok');
 
     const requiredKeys = [
       "model",
@@ -50,17 +49,4 @@ export default async function handler(
   } else {
     return res.status(400).json({ error: "Not implemented" });
   }
-}
-
-function pickObjectKeys<T extends object>(raw: T, keys: string | string[]): T {
-  const keysToFilter = typeof keys === "string"
-    ? [keys]
-    : keys;
-
-  return Object.keys(raw)
-    .filter(key => keysToFilter.includes(key))
-    .reduce((obj, key) => {
-      obj[key] = (raw as any)[key];
-      return obj;
-    }, {} as any) as T;
 }

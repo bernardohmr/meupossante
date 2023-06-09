@@ -8,7 +8,7 @@ import taycan3 from '@/../public/images/taycan3.webp'
 import taycan4 from '@/../public/images/taycan4.webp'
 import DefaultHeader from '@/components/DefaultHeader';
 import Button from '@/components/Button';
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Loader from '@/components/Loader'
 import { createAnnouncement } from '@/utils/endpoints';

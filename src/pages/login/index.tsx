@@ -1,15 +1,40 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import logoComplete from '@/../public/images/logo-complete.svg'
 import Form from '@/components/Form';
+import { useState } from 'react';
+import { auth } from '@/utils/endpoints';
+import { sleep } from '@/utils/sleep';
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadedWithSuccess, setIsLoadedWithSuccess] = useState(false);
+  const [isLoadedWithError, setIsLoadedWithError] = useState(false);
+  const router = useRouter();
+
   const fields = [
-    { key: "user", placeholder: "Usuário/E-mail" },
+    { key: "email", placeholder: "Usuário/E-mail" },
     { key: "password", placeholder: "Senha" },
   ];
+
+  function handleSubmit(data: any): void {
+    setIsLoading(true)
+
+    auth(data)
+      .then((res) => {
+        setIsLoadedWithSuccess(true);
+        setIsLoadedWithError(false);
+        sleep(1000).then(() => router.push("/create-announcement"))
+      })
+      .catch(err => {
+        console.log(err)
+        setIsLoadedWithSuccess(false);
+        setIsLoadedWithError(true);
+      })
+      .finally(() => setIsLoading(false))
+  }
 
   return (
     <div className='bg-white h-screen'>
@@ -26,8 +51,13 @@ export default function Login() {
         <div className='flex flex-col items-center'>
           <Form
             submitButtonTitle="Entrar"
-            onSubmit={() => Router.push("/create-announcement")}
+            onSubmit={handleSubmit}
             fields={fields}
+            isLoading={isLoading}
+            isLoadedWithSuccess={isLoadedWithSuccess}
+            isLoadedWithError={isLoadedWithError}
+            submitSuccessMessage='Login feito! Redirecionando...'
+            submitErrorMessage='Credenciais inválidas!'
           />
         </div>
 
