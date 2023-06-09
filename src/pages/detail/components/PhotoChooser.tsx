@@ -31,11 +31,11 @@ export default function PhotoChooser({ images }: IRequest) {
 
   return (
     <div className='mx-auto w-full relative bg-black'>
-      <div className='max-h-[488px] overflow-hidden'>
+      <div className='max-h-[488px] min-h-[260px] overflow-hidden'>
         <Image
-          className='max-h-[488px] mx-auto object-cover sm:object-scale-down'
+          className='max-h-[488px] min-h-[260px] w-[calc(150vh)] mx-auto object-cover sm:object-scale-down'
           alt="Taycan"
-          src={`/../public/images/${currentImage}`}
+          src={`/images/${currentImage}`}
           width={800}
           height={624}
         />

@@ -32,11 +32,10 @@ export default function Card({
     <div className='mb-6 lg:mb-12 flex shadow-[0_5px_5px_rgba(0,0,0,0.25)]' onClick={() => Router.push(`/detail/${redirect}`)}>
       <Image
         className='w-1/2'
-        src={`/../public/images/${image}`}
+        src={`/images/${image}`}
         alt={model}
         width={800}
         height={624}
-        priority
       />
       <div className='w-1/2'>
         <div className='text-neutral-950 font-sans flex justify-between h-full p-3 pt-2 sm:p-6 lg:p-10'>

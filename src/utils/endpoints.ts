@@ -8,7 +8,7 @@ export const createAnnouncement = async (data: ICreateAnnouncementData) => {
     console.log(data)
     await sleep(1000);
 
-    const url = "http://localhost:3000/api/announcements"
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/announcements`
 
     return fetch(url, {
         method: "POST",
