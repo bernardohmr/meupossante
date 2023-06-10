@@ -11,7 +11,7 @@ import Button from '@/components/Button';
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Loader from '@/components/Loader'
-import { createAnnouncement } from '@/utils/endpoints';
+import { createAnnouncement } from '@/controllers';
 
 export default function UploadAnnouncementImages() {
   const [isLoading, setIsLoading] = useState(false);

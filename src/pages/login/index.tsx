@@ -5,7 +5,7 @@ import Router, { useRouter } from 'next/router'
 import logoComplete from '@/../public/images/logo-complete.svg'
 import Form from '@/components/Form';
 import { useState } from 'react';
-import { auth } from '@/utils/endpoints';
+import { auth } from '@/controllers';
 import { sleep } from '@/utils/sleep';
 
 export default function Login() {

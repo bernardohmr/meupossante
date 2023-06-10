@@ -2,7 +2,7 @@ import Form from '@/components/Form';
 import DefaultHeader from '@/components/DefaultHeader';
 import { useState } from 'react';
 
-import { createUser } from '@/utils/endpoints';
+import { createUser } from '@/controllers';
 import { useRouter } from 'next/router';
 import { sleep } from '@/utils/sleep';
 

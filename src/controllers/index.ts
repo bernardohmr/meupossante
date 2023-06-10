@@ -1,4 +1,4 @@
-import { sleep } from "./sleep";
+import { sleep } from "../utils/sleep";
 
 interface ICreateAnnouncementData {
 
@@ -13,8 +13,6 @@ interface ICreateUserData {
 }
 
 export const createAnnouncement = async (data: ICreateAnnouncementData) => {
-    await sleep(1000);
-
     const url = "/api/announcements"
 
     return fetch(url, {
@@ -37,8 +35,6 @@ export const createAnnouncement = async (data: ICreateAnnouncementData) => {
 
 
 export const createUser = async (data: ICreateUserData) => {
-    await sleep(1000);
-
     const url = "/api/users"
 
     return fetch(url, {
@@ -60,8 +56,6 @@ export const createUser = async (data: ICreateUserData) => {
 }
 
 export const auth = async (data: { email: string; password: string; }) => {
-    await sleep(1000);
-
     const url = "/api/auth"
 
     return fetch(url, {
