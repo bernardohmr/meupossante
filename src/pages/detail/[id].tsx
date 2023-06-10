@@ -153,5 +153,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const parsedCar = JSON.parse(JSON.stringify(car))
 
-  return { props: { car: parsedCar } };
+  return { props: { car: parsedCar }, revalidate: 10 };
 };
