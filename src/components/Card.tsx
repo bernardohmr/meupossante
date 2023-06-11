@@ -62,7 +62,7 @@ export default function Card({
             <div className=''>
               <Button
                 title="Contato"
-                onClick={() => { }}
+                onClick={() => {}}
                 className='sm:text-lg lg:text-xl'
               />
             </div>

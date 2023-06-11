@@ -107,7 +107,7 @@ export default function Detail({ car }: InferGetStaticPropsType<typeof getStatic
           <div className='m-3 h-8 inline-block w-1/3 max-w-[300px]'>
             <Button
               title="Contato"
-              onClick={() => {}}
+              onClick={() => Router.push(`https://wa.me/5534999999999?text=Ol%C3%A1%21%20Estou%20interessado%20no%20carro%20${car.model}`)}
               className="text-xl sm:text-lg lg:text-xl"
             />
           </div>
