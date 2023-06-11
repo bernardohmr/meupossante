@@ -2,7 +2,8 @@
 
 Aplicativo desenvolvido como trabalho de fim de curso da pós graduação em Engenharia de Software da PUC Minas.
 
-por Bernardo Rodrigues. [Linkedin](linkedin.com/in/bernardohmr)
+:computer: por Bernardo Rodrigues
+(:link: [Linkedin](https://linkedin.com/in/bernardohmr))
 
 </br>
 
