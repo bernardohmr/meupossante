@@ -2,7 +2,7 @@
 
 Aplicativo desenvolvido como trabalho de fim de curso da pós graduação em Engenharia de Software da PUC Minas.
 
-por Bernardo Rodrigues. [linkedin.com/in/bernardohmr]
+por Bernardo Rodrigues. [Linkedin](linkedin.com/in/bernardohmr)
 
 </br>
 
